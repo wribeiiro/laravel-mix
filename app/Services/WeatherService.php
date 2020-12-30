@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class WeatherService {
 
-    private string $key = '574715c7694f4b97b7c84bdf1704353b';
+    private string $key = '574715c7694f4b97b7c84bdf1704353b_';
     private string $location;
     private string $endpoint;
 
@@ -19,10 +19,10 @@ class WeatherService {
     public function requestApi() {
         $response = Http::get($this->endpoint);
 
-        return $response;
+        return $response->json();
     }
 
     public function makeEndpoint() {
-        $this->endpoint = "https://api.openweathermap.org/data/2.5/weather?appid={$this->key}&units=metric&{$this->location}";
+        $this->endpoint = "https://api.openweathermap.org/data/2.5/weather?appid={$this->key}&units=metric&q={$this->location}";
     }
 }

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Services\WeatherService;
 use InvalidArgumentException;
-use PHPUnit\Util\InvalidArgumentHelper;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class GetCurrentWeather extends Command
 {
@@ -40,6 +40,7 @@ class GetCurrentWeather extends Command
      */
     public function handle()
     {
+
         $argument = $this->argument('location');
 
         if ($argument === null) {
@@ -48,6 +49,6 @@ class GetCurrentWeather extends Command
 
         $weather = new WeatherService($argument);
 
-        dd($weather);
+        dd($weather->requestApi());
     }
 }
